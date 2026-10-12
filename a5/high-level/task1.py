@@ -55,13 +55,13 @@ class Datapath:
     registers: list[int] = field(default_factory=lambda: [0] * 4)
     output: int = 0
 
-    def load(self, destination: int, value: int):
+    def load(self, destination: Register, value: int):
         self.registers[destination] = value
 
-    def greater(self, a: int, b: int) -> bool:
+    def greater(self, a: Register, b: Register) -> bool:
         return self.registers[a] > self.registers[b]
 
-    def calculate_to_output(self, a: int, b: int, opcode: Opcode):
+    def calculate_to_output(self, a: Register, b: Register, opcode: Opcode):
         self.output = alu(
             self.registers[a],
             self.registers[b],
